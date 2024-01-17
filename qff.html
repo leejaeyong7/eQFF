@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QFF Viewer</title>
+    <script type="module" crossorigin src="/eQFF/assets/modulepreload-polyfill-3cfb730f.js"></script>
+    <script type="module" crossorigin src="/eQFF/assets/main-f97d06d1.js"></script>
+    <link rel="stylesheet" href="/eQFF/assets/main-f6d1fc0e.css">
+  </head>
+  <body style="display:block; text-align: center;">
+    <qff-viewer id="viewer" width="600" height="600" style="margin: auto;"></qff-viewer>
+    
+    <script>
+      const qff_viewer = document.getElementById('viewer');
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      let qff_src = null;
+      if(urlParams.has('src')){
+        qff_src = urlParams.get('src')
+      }
+      window.viewer = viewer;
+      window.qff_src = qff_src;
+      viewer.setAttribute('src', qff_src);
+
+      if(urlParams.has('up')){
+        up_dir = urlParams.get('up').split(',').map(x => parseFloat(x));
+        viewer.setAttribute('up', up_dir);
+      }
+    </script>
+  </body>
+</html>
